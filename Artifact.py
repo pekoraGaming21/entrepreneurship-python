@@ -1,0 +1,71 @@
+from Substat import Substat
+
+
+class Artifact:
+    def __init__(self, mn, mstat, one, two, three, four):
+        self.main = mn
+        self.mainValue = mstat
+        self.substats = [0,0,0,0]
+        self.substats[0] = one
+        self.substats[1] = two
+        self.substats[2] = three
+        self.substats[3] = four
+        return
+
+    def __str__(self):
+        return(f"Main: {self.main}, {self.mainValue}\n{self.substats[0]}, {self.substats[1]}, {self.substats[2]}, {self.substats[3]}")
+
+    def getMain(self):
+        return self.main
+    
+    def getMainV(self):
+        return self.mainValue
+    
+    def getATK(self, base):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "ATK":
+                returner += s.getValue()
+            elif s.getStat() == "PATK":
+                returner += s.getValue() * base
+        return returner
+    
+    def getDEF(self, base):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "DEF":
+                returner += s.getValue()
+            if s.getStat() == "PDEF":
+                returner += s.getValue() * base
+
+        return returner
+    
+    def getHP(self, base):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "HP":
+                returner += s.getValue()
+            if s.getStat() == "PHP":
+                returner += s.getValue() * base
+
+        return returner
+    
+    def getEM(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "EM":
+                returner += s.getValue()
+        return returner
+
+    def getElemental(self):
+        for s in self.substats:
+            if "PHDMG, PDMG, HDMG, ADMG, EDMG, DDMG, CDMG, GDMG".find(s.getStat()) > 0:
+                return s.getStat
+        return "Something went wrong in getElemental"
+    
+    def getELementalDMG(self, element):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == element:
+                returner += s.getValue()
+        return returner

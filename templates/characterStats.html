@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block styling %}
+<style>
+    .artifact {
+        display:block;
+        border-style:dotted;
+        border-width:2px;
+        border-color:rgb(153, 72, 72);
+        padding:0px;
+        margin:0px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <p>{{characterName}}</p>
+    <p>HP: {{HP}}</p>
+    <p>ATK: {{ATK}}</p>
+    <p>DEF: {{DEF}}</p>
+</div>
+
+
+{% endblock %}

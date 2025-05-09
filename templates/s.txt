@@ -1,0 +1,1 @@
+Artifact("HP",request.form['sandsMain'], Substat(request.form['sandsSub1'], request.form['sandsSub1V']), Substat(request.form['sandsSub2'], request.form['sandsSub2V']), Substat(request.form['sandsSub3'], request.form['sandsSub3V']), Substat(request.form['sandsSub4'], request.form['sandsSub4V']))

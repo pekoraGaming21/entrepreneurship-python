@@ -1,0 +1,409 @@
+{% extends 'base.html' %}
+
+{% block styling %}
+<style>
+    .artifact {
+        display:block;
+        border-style:dotted;
+        border-width:2px;
+        border-color:rgb(153, 72, 72);
+        padding:0px;
+        margin:0px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<form action="/character/submit" method="post">
+    <div class="artifact">
+        <label for="character">Character</label>
+        <select name="character" id="character">
+            <option value="Ganyu">Ganyu</option>
+        </select>
+    </div>
+
+    <div class="artifact">
+        <p style="font-size:large;">Flower</p>
+        <label for="flowerMain" style="font-size:medium;">Main Value</label>
+        <input type="number" id="flowerMain" name = "flowerMain"><br>
+        <label for="flowerSub1" style="font-size:small;">Substat 1</label>
+        <select name="flowerSub1" id="flowerSub1">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="flowerSub1V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="flowerSub1V" name = "flowerSub1V"><br>
+
+        <label for="flowerSub2" style="font-size:small;">Substat 2</label>
+        <select name="flowerSub2" id="flowerSub2">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="flowerSub2V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="flowerSub2V" name = "flowerSub2V"><br>
+
+        <label for="flowerSub3" style="font-size:small;">Substat 3</label>
+        <select name="flowerSub3" id="flowerSub3">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="flowerSub3V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="flowerSub3V" name = "flowerSub3V"><br>
+
+        <label for="flowerSub4" style="font-size:small;">Substat 4</label>
+        <select name="flowerSub4" id="flowerSub4">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="flowerSub4V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="flowerSub4V" name = "flowerSub4V"><br>
+    </div>
+    
+    <div class="artifact">
+        <p style="font-size:large;">Feather</p>
+        <label for="featherMain" style="font-size:medium;">Main Value</label>
+        <input type="number" id="featherMain" name = "featherMain"><br>
+        <label for="featherSub1" style="font-size:small;">Substat 1</label>
+        <select name="featherSub1" id="featherSub1">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="featherSub1V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="featherSub1V" name = "featherSub1V"><br>
+
+        <label for="featherSub2" style="font-size:small;">Substat 2</label>
+        <select name="featherSub2" id="featherSub2">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="featherSub2V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="featherSub2V" name = "featherSub2V"><br>
+
+        <label for="featherSub3" style="font-size:small;">Substat 3</label>
+        <select name="featherSub3" id="featherSub3">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="featherSub3V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="featherSub3V" name = "featherSub3V"><br>
+
+        <label for="featherSub4" style="font-size:small;">Substat 4</label>
+        <select name="featherSub4" id="featherSub4">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="featherSub4V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="featherSub4V" name = "featherSub4V"><br>
+    </div>
+    <div class="artifact">
+        <p style="font-size:large;">Sands</p>
+        <label for="sandsMain" style="font-size:medium;">Main Stat</label>
+        <select name="sandsMain" id="sandsMain">
+            <option value="PHP">HP%</option>
+            <option value="PATK">ATK%</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+        </select>
+        <label for="sandsMainV" style="font-size:medium;">Main Value</label>
+        <input type="number" id="sandsMainV" name = "sandsMainV"><br>
+        <label for="sandsSub1" style="font-size:small;">Substat 1</label>
+        <select name="sandsSub1" id="sandsSub1">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="sandsSub1V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="sandsSub1V" name = "sandsSub1V"><br>
+
+        <label for="sandsSub2" style="font-size:small;">Substat 2</label>
+        <select name="sandsSub2" id="sandsSub2">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="sandsSub2V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="sandsSub2V" name = "sandsSub2V"><br>
+
+        <label for="sandsSub3" style="font-size:small;">Substat 3</label>
+        <select name="sandsSub3" id="sandsSub3">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="sandsSub3V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="sandsSub3V" name = "sandsSub3V"><br>
+
+        <label for="sandsSub4" style="font-size:small;">Substat 4</label>
+        <select name="sandsSub4" id="sandsSub4">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="sandsSub4V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="sandsSub4V" name = "sandsSub4V"><br>
+    </div>
+    <div class="artifact">
+        <p style="font-size:large;">Goblet</p>
+        <label for="gobletMain" style="font-size:medium;">Main Stat</label>
+        <select name="gobletMain" id="gobletMain">
+            <option value="PHP">HP%</option>
+            <option value="PATK">ATK%</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="PHDMG">Physical Damage Bonus%</option>
+            <option value="PDMG">Pyro Damage Bonus%</option>
+            <option value="HDMG">Hydro Damage Bonus%</option>
+            <option value="ADMG">Anemo Damage Bonus%</option>
+            <option value="EDMG">Electro Damage Bonus%</option>
+            <option value="DDMG">Dendro Damage Bonus%</option>
+            <option value="CDMG">Cryo Damage Bonus%</option>
+            <option value="GDMG">Geo Damage Bonus%</option>
+        </select>
+        <label for="gobletMainV" style="font-size:medium;">Main Value</label>
+        <input type="number" id="gobletMainV" name = "gobletMainV"><br>
+        <label for="gobletSub1" style="font-size:small;">Substat 1</label>
+        <select name="gobletSub1" id="gobletSub1">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="gobletSub1V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="gobletSub1V" name = "gobletSub1V"><br>
+
+        <label for="gobletSub2" style="font-size:small;">Substat 2</label>
+        <select name="gobletSub2" id="gobletSub2">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="gobletSub2V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="gobletSub2V" name = "gobletSub2V"><br>
+
+        <label for="gobletSub3" style="font-size:small;">Substat 3</label>
+        <select name="gobletSub3" id="gobletSub3">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="gobletSub3V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="gobletSub3V" name = "gobletSub3V"><br>
+
+        <label for="gobletSub4" style="font-size:small;">Substat 4</label>
+        <select name="gobletSub4" id="gobletSub4">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="gobletSub4V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="gobletSub4V" name = "gobletSub4V"><br>
+    </div>
+    <div class="artifact">
+        <p style="font-size:large;">Circlet</p>
+        <label for="circletMain" style="font-size:medium;">Main Stat</label>
+        <select name="circletMain" id="circletMain">
+            <option value="PHP">HP%</option>
+            <option value="PATK">ATK%</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+            <option value="HB">Healing Bonus%</option>
+        </select>
+        <label for="circletMainV" style="font-size:medium;">Main Value</label>
+        <input type="number" id="circletMainV" name = "circletMainV"><br>
+        <label for="circletSub1" style="font-size:small;">Substat 1</label>
+        <select name="circletSub1" id="circletSub1">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="circletSub1V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="circletSub1V" name = "circletSub1V"><br>
+
+        <label for="circletSub2" style="font-size:small;">Substat 2</label>
+        <select name="circletSub2" id="circletSub2">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="circletSub2V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="circletSub2V" name = "circletSub2V"><br>
+
+        <label for="circletSub3" style="font-size:small;">Substat 3</label>
+        <select name="circletSub3" id="circletSub3">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="circletSub3V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="circletSub3V" name = "circletSub3V"><br>
+
+        <label for="circletSub4" style="font-size:small;">Substat 4</label>
+        <select name="circletSub4" id="circletSub4">
+            <option value="HP">HP</option>
+            <option value="PHP">HP%</option>
+            <option value="ATK">ATK</option>
+            <option value="PATK">ATK%</option>
+            <option value="DEF">DEF</option>
+            <option value="PDEF">DEF%</option>
+            <option value="EM">Elemental Mastery</option>
+            <option value="ER">Energy Recharge</option>
+            <option value="CR">Crit Rate</option>
+            <option value="CD">Crit Damage</option>
+        </select>
+        <label for="circletSub4V" style="font-size:small;">Substat Value</label>
+        <input type="number" id="circletSub4V" name = "circletSub4V"><br>
+    </div>
+
+    <div class="artifact">
+        <label for="attackMultipler">This attack has a multiplier of...</label>
+        <input type="number" id="attackMultipler" name="attackMultipler"><br>
+    </div>
+
+    <button type="submit" value="submit"><img src=""></button>
+</form>
+
+{% endblock %}

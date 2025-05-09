@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block styling %}{% endblock %}
+        <style>
+            .header {
+                list-style-type: none;
+                display: flex;
+            }
+        
+            .headernest {
+            padding: 5px;
+            }
+        </style>
+    </head>
+    <header>
+        <ul class="header" style="display: flex;">
+            <li class="headernest"><a href="/"><img src="{{url_for('static', filename='logo.png')}}" alt="Logo" width="200" height="200"></a></li>
+            <li class="headernest"><a href="/character"><img src="{{url_for('static', filename='character.png')}}" alt="Character" width="200" height="200"></a></li>
+            <li class="headernest"><a href="/calculator"><img src="{{url_for('static', filename='calculate.png')}}" alt="Character" width="200" height="200"></a></li>
+        </ul>
+    </header>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
