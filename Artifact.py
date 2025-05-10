@@ -2,14 +2,22 @@ from Substat import Substat
 
 
 class Artifact:
-    def __init__(self, mn, mstat, one, two, three, four):
-        self.main = mn
-        self.mainValue = mstat
-        self.substats = [0,0,0,0]
-        self.substats[0] = one
-        self.substats[1] = two
-        self.substats[2] = three
-        self.substats[3] = four
+    def __init__(self, type, mn, mstat, one, two, three, four=None):
+        if four is None:
+            pass
+        else:
+            self.type = type
+            self.main = mn
+            self.mainValue = mstat
+            self.substats = [0,0,0,0]
+            self.substats[0] = one
+            self.substats[1] = two
+            self.substats[2] = three
+            self.substats[3] = four
+            return
+
+    def __init(self, mn):
+        self.main = "goofyah"
         return
 
     def __str__(self):
