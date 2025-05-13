@@ -26,20 +26,20 @@ class Calculator:
         temp = resShred
 
         
-        if self.targetResMult > 0.75 and self.targetResMult - resShred < 0.75:
+        if self.targetResMult >= 0.75 and self.targetResMult - resShred < 0.75:
             # NOT RIGHT
             self.targetResMult = 1 / (4 * enemyres + 1)
         
         # 
-        elif self.targetResMult > 0.75:
+        elif self.targetResMult >= 0.75:
             self.targetResMult = 1 / (4 * enemyres + 1)
 
-        elif self.targetResMult > 0 and self.targetResMult - resShred < 0:
+        elif self.targetResMult >= 0 and self.targetResMult - resShred < 0:
             temp = resShred - enemyres
             self.targetResMult = 1 - (-temp/2)
 
         #
-        elif self.targetResMult > 0:
+        elif self.targetResMult >= 0:
             self.targetResMult = 1 - enemyres
 
         elif self.targetResMult < 0:
@@ -61,8 +61,18 @@ class Calculator:
 
         # self.ampMult = inn
 
-    def setCritDMG(self, crit):
-        self.critDMG = crit
+    def setCritDMG(self, critical, CR, CD):
+        self.hit = critical
+        self.critRate = CR
+        if CR > 100:
+            self.critRate = 100
+        self.critDMG = CD
 
     def calculate(self):
-        print(((self.baseDMG * self.baseMult) + self.baseAddDMG)* self.bonusDMGMult * self.targetDefMult * self.targetResMult * self.ampMult)
+        NonCrit = ((self.baseDMG * self.baseMult) + self.baseAddDMG) * self.bonusDMGMult * self.targetDefMult * self.targetResMult * self.ampMult
+        if self.hit == "NonCrit":
+            print(NonCrit)
+        elif self.hit == "Average":
+            print((self.critRate / 100) * (1 + (self.critDMG / 100)) * NonCrit + ((100 - self.critRate) / 100) * NonCrit)
+        elif self.hit == "Crit":
+            print(NonCrit * (1 + self.critDMG / 100))
