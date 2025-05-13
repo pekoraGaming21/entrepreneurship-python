@@ -10,21 +10,27 @@ a3 = Artifact("Sands", "EM", 187,  Substat("ATK", 16),  Substat("HP", 209),  Sub
 a4 = Artifact("Goblet", "CDMG", 0.466,  Substat("HP", 209),  Substat("ATK", 29),  Substat("EM", 42),  Substat("CD", 27.2))
 a5 = Artifact("Circlet", "CD", 62.2,  Substat("ATK", 14),  Substat("PHP", 0.058),  Substat("EM", 82),  Substat("CR", 9.7))
 
+# a1 = Artifact("Flower", "HP", 4780, Substat("CR", 0), Substat("CD", 0), Substat("EM", 0), Substat("PHP", 0))
+# a2 = Artifact("Feather", "ATK", 311, Substat("CD", 0), Substat("CR", 0), Substat("ER", 0),  Substat("EM", 0))
+# a3 = Artifact("Sands", "EM", 187,  Substat("ATK", 0),  Substat("HP", 0),  Substat("CD", 0),  Substat("PATK", 0))
+# a4 = Artifact("Goblet", "CDMG", 0.466,  Substat("HP", 0),  Substat("ATK", 0),  Substat("EM", 0),  Substat("CD", 0))
+# a5 = Artifact("Circlet", "CD", 62.2,  Substat("ATK", 0),  Substat("PHP", 0),  Substat("EM", 0),  Substat("CR", 0))
+
 list = [
     a1,
     a2,
     a3,
     a4,
     a5]
-ganyu = Character(9796.73, 334.85 + 542, 630.21, list)
+ganyu = Character("Cryo", 9796.73, 334.85, 630.21, "Hunter's Path", 542, list, "CD", 38.4)
 
 print("Ganyu HP: " + str(ganyu.getTotalHP()))
 print("Ganyu ATK: " + str(ganyu.getTotalATK()))
 print("Ganyu DEF: " + str(ganyu.getTotalDEF()))
-print("Ganyu EM: " + str(ganyu.getTotalEM()))
-print("Ganyu ER: " + str(ganyu.getTotalER()))
-print("Ganyu CR: " + str(ganyu.getTotalCR()))
-print("Ganyu CD: " + str(ganyu.getTotalCD()))
+print("Ganyu EM: " + str(ganyu.getEM()))
+print("Ganyu ER: " + str(ganyu.getER()))
+print("Ganyu CR: " + str(ganyu.getCR()))
+print("Ganyu CD: " + str(ganyu.getCD()))
 
 
 damage = Calculator()

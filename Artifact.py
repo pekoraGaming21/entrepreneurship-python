@@ -36,11 +36,11 @@ class Artifact:
                 returner += s.getValue()
         return returner
     
-    def getPATK(self, base):
+    def getPATK(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "PATK":
-                returner += s.getValue() * base
+                returner += s.getValue()
         return returner
 
     def getDEF(self):
@@ -50,11 +50,11 @@ class Artifact:
                 returner += s.getValue()
         return returner
     
-    def getPDEF(self, base):
+    def getPDEF(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "PDEF":
-                returner += s.getValue() * base
+                returner += s.getValue()
         return returner
 
     def getHP(self):
@@ -64,11 +64,11 @@ class Artifact:
                 returner += s.getValue()
         return returner
     
-    def getPHP(self, base):
+    def getPHP(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "PHP":
-                returner += s.getValue() * base
+                returner += s.getValue()
         return returner
     
     def getEM(self):

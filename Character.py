@@ -8,36 +8,43 @@ class Character:
     CR = 5
     CD = 50
 
-    def __init__(self, bhp, bat, bdf, a):
+    def __init__(self, element, bhp, bat, bdf, weaponName, weaponATK, a, ascensionStatName, ascensionStatNumber):
+        self.element = element
+
+        self.weapName = weaponName
+
         self.baseHP = bhp
-        self.baseATK = bat
+        self.baseATK = bat + weaponATK
         self.baseDEF = bdf
         self.arts = a
 
-        self.totalHP = bhp
-        self.totalATK = bat
-        self.totalDEF = bdf
+        self.totalHP = self.baseHP
+        self.totalATK = self.baseATK
+        self.totalDEF = self.baseDEF
 
-        self.totalCR = 5
-        self.totalCD = 50
-        self.totalEM = 0
-        self.totalER = 100
+        self.CR = 5
+        self.CD = 50
+        self.EM = 0
+        self.ER = 100
 
+        self.ascendName = ascensionStatName
+        self.ascendNum = ascensionStatNumber
 
         for ar in a:
             print(ar)
             self.totalATK += self.getRealValue("ATK", ar.getATK())
-            self.totalATK += self.getRealValue("PATK", ar.getPATK(self.baseATK))
-            self.totalATK += self.getRealValue("DEF", ar.getATK())
+            self.totalATK += self.getRealValue("PATK", ar.getPATK()) * self.baseATK
 
-            self.totalATK += self.getRealValue("PDEF", ar.getPDEF(self.baseDEF))
-            self.totalATK += self.getRealValue("HP", ar.getHP())
+            self.totalDEF += self.getRealValue("DEF", ar.getDEF())
+            self.totalDEF += self.getRealValue("PDEF", ar.getPDEF()) * self.baseDEF
 
-            self.totalATK += self.getRealValue("PHP", ar.getPHP(self.baseHP))
-            self.totalCR += self.getRealValue("CR", ar.getCR())
-            self.totalCD += self.getRealValue("CD", ar.getCD())
-            self.totalEM += self.getRealValue("EM", ar.getEM())
-            self.totalER += self.getRealValue("ER", ar.getER())
+            self.totalHP += self.getRealValue("HP", ar.getHP())
+            self.totalHP += self.getRealValue("PHP", ar.getPHP()) * self.baseHP
+
+            self.CR += self.getRealValue("CR", ar.getCR())
+            self.CD += self.getRealValue("CD", ar.getCD())
+            self.EM += self.getRealValue("EM", ar.getEM())
+            self.ER += self.getRealValue("ER", ar.getER())
 
             # print(self.totalATK)
             temp = ar.getMain()
@@ -78,9 +85,44 @@ class Character:
             elif temp == "GDMG":
                 self.elementalDMG[7] += ar.getMainV()
             
-            # print(self.totalATK)
-            # print(self.totalDEF)
-            # print(self.totalHP)
+        if self.ascendName == "HP":
+            self.totalHP += self.ascendNum
+        elif self.ascendName == "DEF":
+            self.totalDEF += self.ascendNum
+        elif self.ascendName == "ATK":
+            self.totalATK += self.ascendNum
+        elif self.ascendName == "PHP":
+            self.totalHP += self.ascendNum
+        elif self.ascendName == "PDEF":
+            self.totalDEF += self.ascendNum
+        elif self.ascendName == "PATK":
+            self.totalATK += self.ascendNum
+        elif self.ascendName == "EM":
+            self.EM += self.ascendNum
+        elif self.ascendName == "ER":
+            self.ER += self.ascendNum
+        elif self.ascendName == "CR":
+            self.CR += self.ascendNum
+        elif self.ascendName == "CD":
+            self.CD += self.ascendNum
+        elif self.ascendName == "PHDMG":
+            self.elementalDMG[0] += self.ascendNum
+        elif self.ascendName == "PDMG":
+            self.elementalDMG[1] += self.ascendNum
+        elif self.ascendName == "HDMG":
+            self.elementalDMG[2] += self.ascendNum
+        elif self.ascendName == "ADMG":
+            self.elementalDMG[3] += self.ascendNum
+        elif self.ascendName == "EDMG":
+            self.elementalDMG[4] += self.ascendNum
+        elif self.ascendName == "DDMG":
+            self.elementalDMG[5] += self.ascendNum
+        elif self.ascendName == "CDMG":
+            self.elementalDMG[6] += self.ascendNum
+        elif self.ascendName == "GDMG":
+            self.elementalDMG[7] += self.ascendNum
+
+        
 
     def getRealValue(self, statName, statValue):
         HPList = [209.13, 239.00, 269.88, 298.75]
@@ -115,11 +157,6 @@ class Character:
                 lowestDiff = abs(statValue - realStat)
                 lowestDiffIndex = index
         return Reallist[Stringlist.index(statName)][lowestDiffIndex]
-            
-
-
-
-
 
 
 
@@ -127,25 +164,31 @@ class Character:
         # make a list of all values
         # check the closest one
         sum = 0
-        RealList = []
+        RealList = [0]
         for i in range(0,4):
             sum += statValues[i]
-            RealList.append(sum)
+            if not self.isCloseEnough(sum, RealList):
+                RealList.append(sum)
             for j in range(0,4):
                 sum += statValues[j]
-                RealList.append(sum)
+                if not self.isCloseEnough(sum, RealList):
+                    RealList.append(sum)
                 for k in range(0,4):
                     sum += statValues[k]
-                    RealList.append(sum)
+                    if not self.isCloseEnough(sum, RealList):
+                        RealList.append(sum)
                     for l in range(0,4):
                         sum += statValues[l]
-                        RealList.append(sum)
+                        if not self.isCloseEnough(sum, RealList):
+                            RealList.append(sum)
                         for m in range(0,4):
                             sum += statValues[m]
-                            RealList.append(sum)
+                            if not self.isCloseEnough(sum, RealList):
+                                RealList.append(sum)
                             for n in range(0,4):
                                 sum += statValues[n]
-                                RealList.append(sum)
+                                if not self.isCloseEnough(sum, RealList):
+                                    RealList.append(sum)
                                 sum -= statValues[n]
                             sum -= statValues[m]
                         sum -= statValues[l]
@@ -158,7 +201,11 @@ class Character:
         return RealList
 
 
-        
+    def isCloseEnough(self, number, list):
+        for othernumber in list:
+            if abs(number - othernumber) < 0.0001:
+                return True
+        return False
 
     def getTotalATK(self):
         return self.totalATK
@@ -170,17 +217,17 @@ class Character:
     def getTotalHP(self):
         return self.totalHP
     
-    def getTotalEM(self):
-        return self.totalEM
+    def getEM(self):
+        return self.EM
     
-    def getTotalER(self):
-        return self.totalER
+    def getER(self):
+        return self.ER
     
-    def getTotalCR(self):
-        return self.totalCR
+    def getCR(self):
+        return self.CR
     
-    def getTotalCD(self):
-        return self.totalCD
+    def getCD(self):
+        return self.CD
     
     
     
