@@ -29,39 +29,73 @@ class Artifact:
     def getMainV(self):
         return self.mainValue
     
-    def getATK(self, base):
+    def getATK(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "ATK":
                 returner += s.getValue()
-            elif s.getStat() == "PATK":
-                returner += s.getValue() * base
         return returner
     
-    def getDEF(self, base):
+    def getPATK(self, base):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "PATK":
+                returner += s.getValue() * base
+        return returner
+
+    def getDEF(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "DEF":
                 returner += s.getValue()
-            if s.getStat() == "PDEF":
-                returner += s.getValue() * base
-
         return returner
     
-    def getHP(self, base):
+    def getPDEF(self, base):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "PDEF":
+                returner += s.getValue() * base
+        return returner
+
+    def getHP(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "HP":
                 returner += s.getValue()
+        return returner
+    
+    def getPHP(self, base):
+        returner = 0.0
+        for s in self.substats:
             if s.getStat() == "PHP":
                 returner += s.getValue() * base
-
         return returner
     
     def getEM(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "EM":
+                returner += s.getValue()
+        return returner
+
+    def getER(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "ER":
+                returner += s.getValue()
+        return returner
+
+    def getCR(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "CR":
+                returner += s.getValue()
+        return returner
+    
+    def getCD(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "CD":
                 returner += s.getValue()
         return returner
 

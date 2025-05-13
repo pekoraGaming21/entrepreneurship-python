@@ -40,8 +40,8 @@ class RandomArtifact(Artifact):
                         "EM", "EM", "EM", 
                         "ER", "ER", "ER"]
         # Pyro Hydro Anemo Electro Dendro Cryo Geo
-        gobletMainStat = ["PHP", "PATK", "PDEF", "EM", "PHDMG", "PDMG", "HDMG", "ADMG", "EDMG", "DDMG", "CDMG", "GDMG"]
-        circletMainStat = ["PHP", "PATK", "PDEF", "EM", "CR", "CD", "HBONUS"]
+        gobletMainStat = ["PHP", "PATK", "PDEF", "EM", "PHDMG", "PDMG", "HDMG", "ADMG", "EDMG", "DDMG", "CDMG", "GDMG"] #fix
+        circletMainStat = ["PHP", "PATK", "PDEF", "EM", "CR", "CD", "HBONUS"] #fix
 
         StatList = [
         "FlatHP", "FlatHP", "FlatHP", "FlatHP", "FlatHP", "FlatHP", 

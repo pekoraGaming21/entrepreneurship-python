@@ -44,17 +44,17 @@ class Calculator:
 
         elif self.targetResMult < 0:
             self.targetResMult = 1 - (enemyres / 2)
-        print("Target res Multi: " + str(self.targetResMult))
-        print("Target Def Multi: " + str(self.targetDefMult))
+        # print("Target res Multi: " + str(self.targetResMult))
+        # print("Target Def Multi: " + str(self.targetDefMult))
        
 
     def setAmp(self, em, reaction, reactionBonus = 0):
         if reaction == "Reverse Melt" or reaction == "Reverse Vaporize":
             self.ampMult = 1.5 * (1 + 2.78 * (em / (em + 1400)) + reactionBonus)
-            print("Reverse reaction")
+            # print("Reverse reaction")
         elif reaction == "Forward Melt" or reaction == "Forward Vaporize":
             self.ampMult = 2 * (1 + 2.78 * (em / (em + 1400)) + reactionBonus)
-            print("Forward reaction")
+            # print("Forward reaction")
         else:
             self.ampMult = 1
 

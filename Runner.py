@@ -18,7 +18,14 @@ list = [
     a5]
 ganyu = Character(9796.73, 334.85 + 542, 630.21, list)
 
+print("Ganyu HP: " + str(ganyu.getTotalHP()))
 print("Ganyu ATK: " + str(ganyu.getTotalATK()))
+print("Ganyu DEF: " + str(ganyu.getTotalDEF()))
+print("Ganyu EM: " + str(ganyu.getTotalEM()))
+print("Ganyu ER: " + str(ganyu.getTotalER()))
+print("Ganyu CR: " + str(ganyu.getTotalCR()))
+print("Ganyu CD: " + str(ganyu.getTotalCD()))
+
 
 damage = Calculator()
 damage.setBase(ganyu.getTotalATK() * 2.81, 1, 0)
@@ -28,6 +35,7 @@ damage.setAmp(430, "Reverse Melt", 0)
 #damage.setCritDMG()
 damage.calculate()
 
-print("TESTTTTTTT")
 #test = Artifact(3)
 #print(test.getMain)
+
+# print(ganyu.getRealValue("CD", 46.6))
