@@ -2,6 +2,7 @@ from Character import Character
 from Substat import Substat
 from Artifact import Artifact
 from Calculator import Calculator
+from RandomArtifact import RandomArtifact
 
 
 a1 = Artifact("Flower", "HP",4780, Substat("CR", 10.1), Substat("CD", 21.8), Substat("EM", 40), Substat("PHP",0.058))
@@ -10,18 +11,8 @@ a3 = Artifact("Sands", "EM", 187,  Substat("ATK", 16),  Substat("HP", 209),  Sub
 a4 = Artifact("Goblet", "CDMG", 0.466,  Substat("HP", 209),  Substat("ATK", 29),  Substat("EM", 42),  Substat("CD", 27.2))
 a5 = Artifact("Circlet", "CD", 62.2,  Substat("ATK", 14),  Substat("PHP", 0.058),  Substat("EM", 82),  Substat("CR", 9.7))
 
-# a1 = Artifact("Flower", "HP", 4780, Substat("CR", 0), Substat("CD", 0), Substat("EM", 0), Substat("PHP", 0))
-# a2 = Artifact("Feather", "ATK", 311, Substat("CD", 0), Substat("CR", 0), Substat("ER", 0),  Substat("EM", 0))
-# a3 = Artifact("Sands", "EM", 187,  Substat("ATK", 0),  Substat("HP", 0),  Substat("CD", 0),  Substat("PATK", 0))
-# a4 = Artifact("Goblet", "CDMG", 0.466,  Substat("HP", 0),  Substat("ATK", 0),  Substat("EM", 0),  Substat("CD", 0))
-# a5 = Artifact("Circlet", "CD", 62.2,  Substat("ATK", 0),  Substat("PHP", 0),  Substat("EM", 0),  Substat("CR", 0))
+list = [a1,a2,a3,a4,a5]
 
-list = [
-    a1,
-    a2,
-    a3,
-    a4,
-    a5]
 ganyu = Character("Cryo", 9796.73, 334.85, 630.21, "Hunter's Path", 541.83, list, "CD", 38.4)
 
 print("Ganyu HP: " + str(ganyu.getTotalHP()))
@@ -32,7 +23,6 @@ print("Ganyu ER: " + str(ganyu.getER()))
 print("Ganyu CR: " + str(ganyu.getCR()))
 print("Ganyu CD: " + str(ganyu.getCD()))
 
-
 damage = Calculator()
 damage.setBase(ganyu.getTotalATK() * 2.805, 1, 0)
 damage.setBonus(1.586)
@@ -41,7 +31,5 @@ damage.setAmp(ganyu.getEM(), "None", 0)
 damage.setCritDMG("NonCrit", ganyu.getCR(), ganyu.getCD())
 damage.calculate()
 
-#test = Artifact(3)
-#print(test.getMain)
+test = RandomArtifact(None)
 
-# print(ganyu.getRealValue("CD", 46.6))

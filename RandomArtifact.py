@@ -18,61 +18,55 @@ class RandomArtifact(Artifact):
         circletMainStat = ["PHP", "PATK", "PDEF", "EM", "CR", "CD", "HBONUS"]
 
         StatList = [
-        "FlatHP", "FlatHP", "FlatHP", "FlatHP", "FlatHP", "FlatHP", 
-        "PercentHP", "PercentHP", "PercentHP", "PercentHP", 
-        "FlatDEF", "FlatDEF", "FlatDEF", "FlatDEF", "FlatDEF", "FlatDEF",
-        "PercentDEF", "PercentDEF", "PercentDEF", "PercentDEF", 
-        "FlatATK", "FlatATK", "FlatATK", "FlatATK", "FlatATK", "FlatATK", 
-        "PercentATK", "PercentATK", "PercentATK", "PercentATK", 
+        "HP", "HP", "HP", "HP", "HP", "HP", 
+        "PHP", "PHP", "PHP", "PHP", 
+        "DEF", "DEF", "DEF", "DEF", "DEF", "DEF",
+        "PDEF", "PDEF", "PDEF", "PDEF", 
+        "ATK", "ATK", "ATK", "ATK", "ATK", "ATK", 
+        "PATK", "PATK", "PATK", "PATK", 
         "EM", "EM", "EM", "EM", 
         "ER", "ER", "ER", "ER", 
         "CR", "CR", "CR", 
         "CD", "CD", "CD"
         ]
     
-   
-
-        artifactTypeList = ["Flower", "Feather", "Sands", "Goblet", "Circlet"]
-
-        sandsMainStat = ["PHP", "PHP", "PHP", "PHP", "PHP", "PHP", "PHP", "PHP", 
-                        "PATK", "PATK", "PATK", "PATK", "PATK", "PATK", "PATK", "PATK",  
-                        "PDEF", "PDEF", "PDEF", "PDEF", "PDEF", "PDEF", "PDEF", "PDEF", 
-                        "EM", "EM", "EM", 
-                        "ER", "ER", "ER"]
-        # Pyro Hydro Anemo Electro Dendro Cryo Geo
-        gobletMainStat = ["PHP", "PATK", "PDEF", "EM", "PHDMG", "PDMG", "HDMG", "ADMG", "EDMG", "DDMG", "CDMG", "GDMG"] #fix
-        circletMainStat = ["PHP", "PATK", "PDEF", "EM", "CR", "CD", "HBONUS"] #fix
-
-        StatList = [
-        "FlatHP", "FlatHP", "FlatHP", "FlatHP", "FlatHP", "FlatHP", 
-        "PercentHP", "PercentHP", "PercentHP", "PercentHP", 
-        "FlatDEF", "FlatDEF", "FlatDEF", "FlatDEF", "FlatDEF", "FlatDEF",
-        "PercentDEF", "PercentDEF", "PercentDEF", "PercentDEF", 
-        "FlatATK", "FlatATK", "FlatATK", "FlatATK", "FlatATK", "FlatATK", 
-        "PercentATK", "PercentATK", "PercentATK", "PercentATK", 
-        "EM", "EM", "EM", "EM", 
-        "ER", "ER", "ER", "ER", 
-        "CR", "CR", "CR", 
-        "CD", "CD", "CD"
-        ]
-
-        
 
         if type != None:
             type = rand.choice(artifactTypeList)
+        ArtifactMainStatName=""
 
         # THE CURRENT ASSUMPTION IS A LEVEL 20 ARTIFACT
         if type == "Flower":
-            self.mn = "HP"
+            ArtifactMainStatName = "HP"
         elif type == "Feather":
-            self.mn = "ATK"
+            ArtifactMainStatName = "ATK"
         elif type == "Sands":
-            self.mn = rand.choice(sandsMainStat)
+            ArtifactMainStatName = rand.choice(sandsMainStat)
         elif type == "Goblet":
-            self.mn = rand.choice(gobletMainStat)
+            ArtifactMainStatName = rand.choice(gobletMainStat)
         elif type == "Circlet":
-            self.mn = rand.choice(circletMainStat)
+            ArtifactMainStatName = rand.choice(circletMainStat)
         
+        substatlist=self.RemoveSubstat(ArtifactMainStatName, StatList)
+
+        substat1name=rand.choice(StatList)
+        substat1value=self.RandomChooseNumberStat(substat1name)
+
+        substatlist=self.RemoveSubstat(substat1name, substatlist)
+        substat2name=rand.choice(StatList)
+        substat2value=self.RandomChooseNumberStat(substat2name)
+
+        substatlist=self.RemoveSubstat(substat2name, substatlist)
+        substat3name=rand.choice(StatList)
+        substat3value=self.RandomChooseNumberStat(substat3name)
+
+        substatlist=self.RemoveSubstat(substat3name, substatlist)
+        substat4name=rand.choice(StatList)
+        substat4value=self.RandomChooseNumberStat(substat4name)
+        substatlist=self.RemoveSubstat(substat4name, substatlist)
+
+        print("Main Stat:",ArtifactMainStatName)
+        print(substatlist)
         # Remove Main Stat from list of substats to choose
         # Choose substats
         # Determine the initial roll for each substat (for possible testing later)
@@ -83,9 +77,15 @@ class RandomArtifact(Artifact):
                 # Add the roll value to the substat
                 # Increment its roll count by 1 for easier tracking later
         pass
+    #use stat, use for loop to cycle thru the list for finding stat then delete it
+    def RemoveSubstat(self, stat, statlist):
+        statcount=statlist.count(stat)
+        for i in range(statcount):
+            statlist.remove(stat)
+        return statlist
+    
 
-
-    def RandomChooseNumberStat(Substatname):
+    def RandomChooseNumberStat(self, Substatname):
         HPList = [209.13, 239.00, 269.88, 298.75]
         PHPList = [4.08, 4.66, 5.25, 5.83]
         DEFList = [16.20, 18.52, 20.83, 23.15]

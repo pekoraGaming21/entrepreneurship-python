@@ -21,16 +21,13 @@ class Calculator:
     def setTarget(self, enemyLvl, charLvl, enemyres, resShred):
         self.targetDefMult = (charLvl + 100) / (1 * (enemyLvl + 100) + (charLvl + 100))
         
-
         self.targetResMult = enemyres
         temp = resShred
 
-        
         if self.targetResMult >= 0.75 and self.targetResMult - resShred < 0.75:
             # NOT RIGHT
             self.targetResMult = 1 / (4 * enemyres + 1)
         
-        # 
         elif self.targetResMult >= 0.75:
             self.targetResMult = 1 / (4 * enemyres + 1)
 
@@ -38,15 +35,11 @@ class Calculator:
             temp = resShred - enemyres
             self.targetResMult = 1 - (-temp/2)
 
-        #
         elif self.targetResMult >= 0:
             self.targetResMult = 1 - enemyres
 
         elif self.targetResMult < 0:
             self.targetResMult = 1 - (enemyres / 2)
-        # print("Target res Multi: " + str(self.targetResMult))
-        # print("Target Def Multi: " + str(self.targetDefMult))
-       
 
     def setAmp(self, em, reaction, reactionBonus = 0):
         if reaction == "Reverse Melt" or reaction == "Reverse Vaporize":
@@ -57,9 +50,6 @@ class Calculator:
             # print("Forward reaction")
         else:
             self.ampMult = 1
-
-
-        # self.ampMult = inn
 
     def setCritDMG(self, critical, CR, CD):
         self.hit = critical
