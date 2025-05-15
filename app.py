@@ -26,6 +26,10 @@ def daytonify(value):
         except:
             return "AAAAAAAAAAAAAAAAAAAAAA"
 
+@app.route("/calculator")
+def calculator():
+    return render_template("calculator.html")
+
 
 @app.route("/character/submit", methods=['POST'])
 def characterSubmit():
