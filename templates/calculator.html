@@ -2,11 +2,31 @@
 
 
 {% block content %}
+<form action="calculator/submit" method="post">
+    <div>
+        <label for="character">Character</label>
+        <select name="character" id="character">
+            {% for chara in characters %}
+            <option value={{ chara.name }}>
+                <p>{{ chara.name }}</p>
+                <p>ID: {{ chara.id }}</p>
+            </option>
+            {% endfor %}
+            <!-- <option value="Ganyu">Ganyu</option> -->
+        </select>
+    </div>
 
-<p><b>FLOWER</b> has a ranking of 71.3%</p>
-<p><b>FEATHER</b> has a ranking of 33.0%</p>
-<p><b>SANDS</b> has a ranking of 91.2%</p>
-<p><b>GOBLET</b> has a ranking of 20.6%</p>
-<p><b>CIRCLET</b> has a ranking of 56.6%</p>
+    <div>
+        <label for="artifact">Artifact Type</label>
+        <select name="artifact" id="artifact">
+            <option value = "Flower">Flower</option>
+            <option value = "Feather">Feather</option>
+            <option value = "Sands">Sands</option>
+            <option value = "Goblet">Goblet</option>
+            <option value = "Circlet">Circlet</option>
+        </select>
+    </div>
 
+    <button type="submit" value="submit"><img src=""></button>
+<form>
 {% endblock %}

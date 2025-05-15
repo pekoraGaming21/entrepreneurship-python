@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<form action="calculator" method="get">
+    <div>
+        <p>{{character}}</p>
+    </div>
+
+    <div>
+        <p>We recommend you upgrade your {{recommendedUpgrade}} first!</p>
+    </div>
+
+    <div>
+        <div>
+            <p>Flower</p>
+            <p>This artifact is better than {{flowerPercentile}} of most flowers</p>
+        </div>
+        <div>
+            <p>Feather</p>
+            <p>This artifact is better than {{featherPercentile}} of most flowers</p>
+        </div>
+        <div>
+            <p>Sands</p>
+            <p>This artifact is better than {{sandsPercentile}} of most flowers</p>
+        </div>
+        <div>
+            <p>Goblet</p>
+            <p>This artifact is better than {{gobletPercentile}} of most flowers</p>
+        </div>
+        <div>
+            <p>Circlet</p>
+            <p>This artifact is better than {{circletPercentile}} of most flowers</p>
+        </div>
+    </div>
+    
+
+    <button type="submit" value="submit"><img src=""></button>
+<form>
+{% endblock %}
