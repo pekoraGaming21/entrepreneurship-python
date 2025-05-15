@@ -105,6 +105,14 @@ class RandomArtifact(Artifact):
                     substat4roll += 1
                     substat4value += self.RandomChooseNumberStat(substat4name)
 
+        print("Type:", type)
+        print("Main Stat:", ArtifactMainStatName)
+        print("")
+        print("(" + str(substat1roll) + ") " + substat1name + " -", str(substat1value))
+        print("(" + str(substat2roll) + ") " + substat2name + " -", str(substat2value))
+        print("(" + str(substat3roll) + ") " + substat3name + " -", str(substat3value))
+        print("(" + str(substat4roll) + ") " + substat4name + " -", str(substat4value))
+
         # Actually set the object's stats
         self.type = type
         self.main = ArtifactMainStatName

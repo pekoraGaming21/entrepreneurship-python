@@ -1,6 +1,5 @@
 class Calculator:
     def __init__(self):
-        print("Calculator on")
         self.baseDMG = 0
         self.baseMult = 0
         self.baseAddDMG = 0
@@ -17,6 +16,8 @@ class Calculator:
 
     def setBonus(self, bonus):
         self.bonusDMGMult = bonus
+
+        
 
     def setTarget(self, enemyLvl, charLvl, enemyres, resShred):
         self.targetDefMult = (charLvl + 100) / (1 * (enemyLvl + 100) + (charLvl + 100))
@@ -61,8 +62,11 @@ class Calculator:
     def calculate(self):
         NonCrit = ((self.baseDMG * self.baseMult) + self.baseAddDMG) * self.bonusDMGMult * self.targetDefMult * self.targetResMult * self.ampMult
         if self.hit == "NonCrit":
-            print(NonCrit)
+            # print(NonCrit)
+            return NonCrit
         elif self.hit == "Average":
-            print((self.critRate / 100) * (1 + (self.critDMG / 100)) * NonCrit + ((100 - self.critRate) / 100) * NonCrit)
+            # print((self.critRate / 100) * (1 + (self.critDMG / 100)) * NonCrit + ((100 - self.critRate) / 100) * NonCrit)
+            return (self.critRate / 100) * (1 + (self.critDMG / 100)) * NonCrit + ((100 - self.critRate) / 100) * NonCrit
         elif self.hit == "Crit":
-            print(NonCrit * (1 + self.critDMG / 100))
+            # print(NonCrit * (1 + self.critDMG / 100))
+            return NonCrit * (1 + self.critDMG / 100)

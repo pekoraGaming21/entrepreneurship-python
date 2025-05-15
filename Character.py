@@ -8,10 +8,12 @@ class Character:
     CR = 5
     CD = 50
 
-    def __init__(self, element, bhp, bat, bdf, weaponName, weaponATK, a, ascensionStatName, ascensionStatNumber):
+    def __init__(self, element, level, bhp, bat, bdf, weaponName, weaponATK, a, ascensionStatName, ascensionStatNumber):
         self.element = element
+        self.level = level
 
         self.weapName = weaponName
+        self.weapATK = weaponATK
 
         self.baseHP = bhp
         self.baseATK = bat + weaponATK
@@ -32,7 +34,7 @@ class Character:
 
         for ar in a:
             # For every artifact, add the artifact's main stat and substats to this character
-            print(ar)
+            # print(ar)
 
             self.totalATK += self.getRealValue("ATK", ar.getATK())
             self.totalATK += self.getRealValue("PATK", ar.getPATK()) * self.baseATK
@@ -125,6 +127,126 @@ class Character:
             self.elementalDMG[7] += self.ascendNum
 
     
+    def updateStats(self, element, level, bhp, bat, bdf, weaponName, weaponATK, a, ascensionStatName, ascensionStatNumber):
+        self.element = element
+        self.level = level
+
+        self.weapName = weaponName
+
+        self.baseHP = bhp
+        self.baseATK = bat + weaponATK
+        self.baseDEF = bdf
+        self.arts = a
+
+        self.totalHP = self.baseHP
+        self.totalATK = self.baseATK
+        self.totalDEF = self.baseDEF
+
+        self.CR = 5
+        self.CD = 50
+        self.EM = 0
+        self.ER = 100
+
+        self.ascendName = ascensionStatName
+        self.ascendNum = ascensionStatNumber
+
+        for ar in a:
+            # For every artifact, add the artifact's main stat and substats to this character
+            # print(ar)
+
+            self.totalATK += self.getRealValue("ATK", ar.getATK())
+            self.totalATK += self.getRealValue("PATK", ar.getPATK()) * self.baseATK
+
+            self.totalDEF += self.getRealValue("DEF", ar.getDEF())
+            self.totalDEF += self.getRealValue("PDEF", ar.getPDEF()) * self.baseDEF
+
+            self.totalHP += self.getRealValue("HP", ar.getHP())
+            self.totalHP += self.getRealValue("PHP", ar.getPHP()) * self.baseHP
+
+            self.CR += self.getRealValue("CR", ar.getCR())
+            self.CD += self.getRealValue("CD", ar.getCD())
+            self.EM += self.getRealValue("EM", ar.getEM())
+            self.ER += self.getRealValue("ER", ar.getER())
+
+            temp = ar.getMain()
+            if temp == "HP":
+                self.totalHP += ar.getMainV()
+            elif temp == "DEF":
+                self.totalDEF += ar.getMainV()
+            elif temp == "ATK":
+                self.totalATK += ar.getMainV()
+            elif temp == "PHP":
+                self.totalHP += ar.getMainV() * self.baseHP
+            elif temp == "PDEF":
+                self.totalDEF += ar.getMainV() * self.baseDEF
+            elif temp == "PATK":
+                self.totalATK += ar.getMainV() * self.baseATK
+            elif temp == "EM":
+                self.EM += ar.getMainV()
+            elif temp == "ER":
+                self.ER += ar.getMainV()
+            elif temp == "CR":
+                self.CR += ar.getMainV()
+            elif temp == "CD":
+                self.CD += ar.getMainV()
+            elif temp == "PHDMG":
+                self.elementalDMG[0] += ar.getMainV()
+            elif temp == "PDMG":
+                self.elementalDMG[1] += ar.getMainV()
+            elif temp == "HDMG":
+                self.elementalDMG[2] += ar.getMainV()
+            elif temp == "ADMG":
+                self.elementalDMG[3] += ar.getMainV()
+            elif temp == "EDMG":
+                self.elementalDMG[4] += ar.getMainV()
+            elif temp == "DDMG":
+                self.elementalDMG[5] += ar.getMainV()
+            elif temp == "CDMG":
+                self.elementalDMG[6] += ar.getMainV()
+            elif temp == "GDMG":
+                self.elementalDMG[7] += ar.getMainV()
+        
+        # Add the ascension stat
+        if self.ascendName == "HP":
+            self.totalHP += self.ascendNum
+        elif self.ascendName == "DEF":
+            self.totalDEF += self.ascendNum
+        elif self.ascendName == "ATK":
+            self.totalATK += self.ascendNum
+        elif self.ascendName == "PHP":
+            self.totalHP += self.ascendNum
+        elif self.ascendName == "PDEF":
+            self.totalDEF += self.ascendNum
+        elif self.ascendName == "PATK":
+            self.totalATK += self.ascendNum
+        elif self.ascendName == "EM":
+            self.EM += self.ascendNum
+        elif self.ascendName == "ER":
+            self.ER += self.ascendNum
+        elif self.ascendName == "CR":
+            self.CR += self.ascendNum
+        elif self.ascendName == "CD":
+            self.CD += self.ascendNum
+        elif self.ascendName == "PHDMG":
+            self.elementalDMG[0] += self.ascendNum
+        elif self.ascendName == "PDMG":
+            self.elementalDMG[1] += self.ascendNum
+        elif self.ascendName == "HDMG":
+            self.elementalDMG[2] += self.ascendNum
+        elif self.ascendName == "ADMG":
+            self.elementalDMG[3] += self.ascendNum
+        elif self.ascendName == "EDMG":
+            self.elementalDMG[4] += self.ascendNum
+        elif self.ascendName == "DDMG":
+            self.elementalDMG[5] += self.ascendNum
+        elif self.ascendName == "CDMG":
+            self.elementalDMG[6] += self.ascendNum
+        elif self.ascendName == "GDMG":
+            self.elementalDMG[7] += self.ascendNum
+
+
+
+
     def getRealValue(self, statName, statValue):
         # Note: The displayed ingame values slightly differ from their actual values. Calculations require the actual values for accurate damage calculation.
         # Returns the closest value to their respective stat name
@@ -149,6 +271,37 @@ class Character:
                 lowestDiff = abs(statValue - realStat)
                 lowestDiffIndex = index
         return Reallist[Stringlist.index(statName)][lowestDiffIndex]
+    
+    def getElement(self):
+        return self.element
+
+    def getLevel(self):
+        return self.level
+
+    def getArtifact(self, type):
+        if type == "Flower":
+            return self.arts[0]
+        elif type == "Feather":
+            return self.arts[1]
+        elif type == "Sands":
+            return self.arts[2]
+        elif type == "Goblet":
+            return self.arts[3]
+        elif type == "Circlet":
+            return self.arts[4]
+
+    def setArtifact(self, type, artifact):
+        if type == "Flower":
+            self.arts[0] = artifact
+        elif type == "Feather":
+            self.arts[1] = artifact
+        elif type == "Sands":
+            self.arts[2] = artifact
+        elif type == "Goblet":
+            self.arts[3] = artifact
+        elif type == "Circlet":
+            self.arts[4] = artifact
+        self.updateStats(self.element, self.level, self.baseHP, self.baseATK - self.weapATK, self.baseDEF, self.weapName, self.weapATK, self.arts, self.ascendName, self.ascendNum)
 
     def getTotalATK(self):
         return self.totalATK
