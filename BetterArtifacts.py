@@ -15,48 +15,59 @@ class BetterArtifacts:
 
         oldArtifact = self.character.getArtifact(type)
         numOfArtifactsWorse = 0
+        coolerArtifacts = []
 
         damage = Calculator()
-        damage.setBase(self.character.getTotalATK() * 2.805, 1, 0)
-        damage.setBonus(1.586)
+        damage.setBase(self.character.getTotalATK() * 1.50, 1, 0)
+        damage.setBonus(0, self.character.getElement(), "Anemo", self.character.getElementalDMG("Anemo"))
         damage.setTarget(103, 90, 0.1, 0)
-        damage.setAmp(self.character.getEM(), "Reverse Melt", 0)
+        damage.setAmp(self.character.getEM(), "None", 0)
         damage.setCritDMG("Average", self.character.getCR(), self.character.getCD())
         oldDamage = damage.calculate()
 
-        sampledArtifacts = 100
+        sampledArtifacts = 10000
         
         for i in range(sampledArtifacts):
+            if i % 1000 == 0:
+                print("Artifact #" + str(i))
 
             newArtifact = RandomArtifact(type)
 
             self.character.setArtifact(type, newArtifact)
 
             # print("Ganyu HP: " + str(self.character.getTotalHP()))
-            print("Ganyu ATK: " + str(self.character.getTotalATK()))
+            # print("Ganyu ATK: " + str(self.character.getTotalATK()))
             # print("Ganyu DEF: " + str(self.character.getTotalDEF()))
-            print("Ganyu EM: " + str(self.character.getEM()))
+            # print("Ganyu EM: " + str(self.character.getEM()))
             # print("Ganyu ER: " + str(self.character.getER()))
-            print("Ganyu CR: " + str(self.character.getCR()))
-            print("Ganyu CD: " + str(self.character.getCD()))
+            # print("Ganyu CR: " + str(self.character.getCR()))
+            # print("Ganyu CD: " + str(self.character.getCD()))
 
 
-            damage.setBase(self.character.getTotalATK() * 2.805, 1, 0)
-            damage.setBonus(1.586)
+            damage.setBase(self.character.getTotalATK() * 1.50, 1, 0)
+            damage.setBonus(0, self.character.getElement(), "Anemo", self.character.getElementalDMG("Anemo"))
             damage.setTarget(103, 90, 0.1, 0)
-            damage.setAmp(self.character.getEM(), "Reverse Melt", 0)
+            damage.setAmp(self.character.getEM(), "None", 0)
             damage.setCritDMG("Average", self.character.getCR(), self.character.getCD())
             newDamage = damage.calculate()
 
-            print("New damage", newDamage)
-            print("Old Damage", oldDamage)
             if newDamage <= oldDamage:
+                # if newDamage > 3970:
+                #     print(newArtifact)
+                #     print("New Damage:", str(newDamage))
+                #     print("Old Damage:", str(oldDamage))
+
                 numOfArtifactsWorse += 1
-                print("increment worse artifacts")
+            else:
+                coolerArtifacts.append(newArtifact)
 
             
         self.character.setArtifact(type, oldArtifact)
 
+        print("Number of artifacts better: " + str(sampledArtifacts - numOfArtifactsWorse))
+        print("Cooler artifacts:")
+        for artifact in coolerArtifacts:
+            print(artifact)
         # Proportions of artifacts worse
         return (numOfArtifactsWorse / sampledArtifacts) 
             

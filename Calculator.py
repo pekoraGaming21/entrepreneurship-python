@@ -14,10 +14,10 @@ class Calculator:
         self.baseMult = mult
         self.baseAddDMG = add
 
-    def setBonus(self, bonus):
-        self.bonusDMGMult = bonus
-
-        
+    def setBonus(self, bonus, elementChar, elementDMGType, elementDMGBonus):
+        self.bonusDMGMult = 1 + bonus
+        if elementChar == elementDMGType:
+            self.bonusDMGMult += elementDMGBonus
 
     def setTarget(self, enemyLvl, charLvl, enemyres, resShred):
         self.targetDefMult = (charLvl + 100) / (1 * (enemyLvl + 100) + (charLvl + 100))
