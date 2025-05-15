@@ -4,7 +4,13 @@ from Substat import Substat
 class Artifact:
     def __init__(self, type, mn, mstat, one, two, three, four=None):
         if four is None:
-            pass
+            self.type = type
+            self.main = mn
+            self.mainValue = mstat
+            self.substats = [0,0,0,0]
+            self.substats[0] = one
+            self.substats[1] = two
+            self.substats[2] = three
         else:
             self.type = type
             self.main = mn
