@@ -4,10 +4,23 @@ from flask_caching import Cache
 from Character import Character
 from Substat import Substat
 from Artifact import Artifact
+from BetterArtifacts import BetterArtifacts
 
 app = Flask(__name__)
 
-characters = {}
+characters = []
+
+characterID = 0
+with open("files\characters.txt", "r") as c:
+    best = 0
+    for x in c:
+        characters.append({
+            "name":x.split(';')[1],
+            "id":x.split(';')[0]
+        })
+        if x.split(';')[0] > best:
+            best = x.split(';')[0]
+    characterID = best
 
 @app.route("/")
 def home():
@@ -30,6 +43,10 @@ def daytonify(value):
 def calculator():
     return render_template("calculator.html")
 
+@app.route("/calculator/submit")
+def calculatorSubmit():
+    jim = BetterArtifacts(request.form['character'])
+
 
 @app.route("/character/submit", methods=['POST'])
 def characterSubmit():
@@ -45,6 +62,10 @@ def characterSubmit():
     a3,
     a4,
     a5]
-    characters["Ganyu"] = Character(9796.73, 334.85, 630.21, list)
-
+    # characters["Ganyu"] = Character("Cryo", 90, 9796.73, 334.85, 630.21, request.form['weapon'], 541.83, list, "CD", 38.4)
+    with open("files\characters.txt", "a") as c:
+        c.write(f"{characterID};{request.form['character']};{a1};{a2};{a3};{a4};{a5}")
+    characterID += 1
     return render_template('characterStats.html', characterName=request.form['character'], ATK=characters["Ganyu"].getTotalATK(),DEF=characters["Ganyu"].getTotalDEF(),HP=characters["Ganyu"].getTotalHP())
+
+
