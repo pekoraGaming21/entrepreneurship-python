@@ -2,6 +2,8 @@ from Character import Character
 from Substat import Substat
 from Artifact import Artifact
 from Calculator import Calculator
+from RandomArtifact import RandomArtifact
+from BetterArtifacts import BetterArtifacts
 
 
 a1 = Artifact("Flower", "HP",4780, Substat("CR", 10.1), Substat("CD", 21.8), Substat("EM", 40), Substat("PHP",0.058))
@@ -10,24 +12,33 @@ a3 = Artifact("Sands", "EM", 187,  Substat("ATK", 16),  Substat("HP", 209),  Sub
 a4 = Artifact("Goblet", "CDMG", 0.466,  Substat("HP", 209),  Substat("ATK", 29),  Substat("EM", 42),  Substat("CD", 27.2))
 a5 = Artifact("Circlet", "CD", 62.2,  Substat("ATK", 14),  Substat("PHP", 0.058),  Substat("EM", 82),  Substat("CR", 9.7))
 
-list = [
-    a1,
-    a2,
-    a3,
-    a4,
-    a5]
-ganyu = Character(9796.73, 334.85 + 542, 630.21, list)
+# a1 = RandomArtifact("Flower")
+# a2 = RandomArtifact("Feather")
+# a3 = RandomArtifact("Sands")
+# a4 = RandomArtifact("Goblet")
+# a5 = RandomArtifact("Circlet")
 
-print("Ganyu ATK: " + str(ganyu.getTotalATK()))
+list = [a1,a2,a3,a4,a5]
 
-damage = Calculator()
-damage.setBase(ganyu.getTotalATK() * 2.81, 1, 0)
-damage.setBonus(1.466)
-damage.setTarget(103, 90, 0.1, 0)
-damage.setAmp(430, "Reverse Melt", 0)
-#damage.setCritDMG()
-damage.calculate()
+ganyu = Character("Cryo", 90, 9796.73, 334.85, 630.21, "Hunter's Path", 541.83, list, "CD", 38.4)
 
-print("TESTTTTTTT")
-#test = Artifact(3)
-#print(test.getMain)
+# print("Ganyu HP: " + str(ganyu.getTotalHP()))
+# print("Ganyu ATK: " + str(ganyu.getTotalATK()))
+# print("Ganyu DEF: " + str(ganyu.getTotalDEF()))
+# print("Ganyu EM: " + str(ganyu.getEM()))
+# print("Ganyu ER: " + str(ganyu.getER()))
+# print("Ganyu CR: " + str(ganyu.getCR()))
+# print("Ganyu CD: " + str(ganyu.getCD()))
+
+# damage = Calculator()
+# damage.setBase(ganyu.getTotalATK() * 2.805, 1, 0)
+# damage.setBonus(1.586)
+# damage.setTarget(103, 90, 0.1, 0)
+# damage.setAmp(ganyu.getEM(), "ReverseMelt", 0)
+# damage.setCritDMG("Average", ganyu.getCR(), ganyu.getCD())
+# print(damage.calculate())
+
+test = BetterArtifacts(ganyu)
+print(test.randomize("Sands"))
+
+

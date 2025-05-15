@@ -4,7 +4,13 @@ from Substat import Substat
 class Artifact:
     def __init__(self, type, mn, mstat, one, two, three, four=None):
         if four is None:
-            pass
+            self.type = type
+            self.main = mn
+            self.mainValue = mstat
+            self.substats = [0,0,0,0]
+            self.substats[0] = one
+            self.substats[1] = two
+            self.substats[2] = three
         else:
             self.type = type
             self.main = mn
@@ -29,39 +35,73 @@ class Artifact:
     def getMainV(self):
         return self.mainValue
     
-    def getATK(self, base):
+    def getATK(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "ATK":
                 returner += s.getValue()
-            elif s.getStat() == "PATK":
-                returner += s.getValue() * base
         return returner
     
-    def getDEF(self, base):
+    def getPATK(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "PATK":
+                returner += s.getValue()
+        return returner
+
+    def getDEF(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "DEF":
                 returner += s.getValue()
-            if s.getStat() == "PDEF":
-                returner += s.getValue() * base
-
         return returner
     
-    def getHP(self, base):
+    def getPDEF(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "PDEF":
+                returner += s.getValue()
+        return returner
+
+    def getHP(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "HP":
                 returner += s.getValue()
+        return returner
+    
+    def getPHP(self):
+        returner = 0.0
+        for s in self.substats:
             if s.getStat() == "PHP":
-                returner += s.getValue() * base
-
+                returner += s.getValue()
         return returner
     
     def getEM(self):
         returner = 0.0
         for s in self.substats:
             if s.getStat() == "EM":
+                returner += s.getValue()
+        return returner
+
+    def getER(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "ER":
+                returner += s.getValue()
+        return returner
+
+    def getCR(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "CR":
+                returner += s.getValue()
+        return returner
+    
+    def getCD(self):
+        returner = 0.0
+        for s in self.substats:
+            if s.getStat() == "CD":
                 returner += s.getValue()
         return returner
 
