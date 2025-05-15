@@ -8,7 +8,7 @@ class Character:
     CR = 5
     CD = 50
 
-    def __init__(self, element, level, bhp, bat, bdf, weaponName, weaponATK, a, ascensionStatName, ascensionStatNumber):
+    def __init__(self, element, level, bhp, bat, bdf, weaponName, weaponATK, a, ascensionStatName, ascensionStatNumber, extraStats):
         self.element = element
         self.level = level
 
@@ -29,8 +29,19 @@ class Character:
         self.EM = 0
         self.ER = 100
 
+        self.elementalDMG[0] = 0
+        self.elementalDMG[1] = 0
+        self.elementalDMG[2] = 0
+        self.elementalDMG[3] = 0
+        self.elementalDMG[4] = 0
+        self.elementalDMG[5] = 0
+        self.elementalDMG[6] = 0
+        self.elementalDMG[7] = 0
+
         self.ascendName = ascensionStatName
         self.ascendNum = ascensionStatNumber
+
+        self.extraStats = extraStats
 
         for ar in a:
             # For every artifact, add the artifact's main stat and substats to this character
@@ -126,8 +137,45 @@ class Character:
         elif self.ascendName == "GDMG":
             self.elementalDMG[7] += self.ascendNum
 
+        for stats in self.extraStats:
+            if stats[0] == "HP":
+                self.totalHP += stats[1]
+            elif stats[0] == "DEF":
+                self.totalDEF += stats[1]
+            elif stats[0] == "ATK":
+                self.totalATK += stats[1]
+            elif stats[0] == "PHP":
+                self.totalHP += stats[1]
+            elif stats[0] == "PDEF":
+                self.totalDEF += stats[1]
+            elif stats[0] == "PATK":
+                self.totalATK += stats[1]
+            elif stats[0] == "EM":
+                self.EM += stats[1]
+            elif stats[0] == "ER":
+                self.ER += stats[1]
+            elif stats[0] == "CR":
+                self.CR += stats[1]
+            elif stats[0] == "CD":
+                self.CD += stats[1]
+            elif stats[0] == "PHDMG":
+                self.elementalDMG[0] += stats[1]
+            elif stats[0] == "PDMG":
+                self.elementalDMG[1] += stats[1]
+            elif stats[0] == "HDMG":
+                self.elementalDMG[2] += stats[1]
+            elif stats[0] == "ADMG":
+                self.elementalDMG[3] += stats[1]
+            elif stats[0] == "EDMG":
+                self.elementalDMG[4] += stats[1]
+            elif stats[0] == "DDMG":
+                self.elementalDMG[5] += stats[1]
+            elif stats[0] == "CDMG":
+                self.elementalDMG[6] += stats[1]
+            elif stats[0] == "GDMG":
+                self.elementalDMG[7] += stats[1]
     
-    def updateStats(self, element, level, bhp, bat, bdf, weaponName, weaponATK, a, ascensionStatName, ascensionStatNumber):
+    def updateStats(self, element, level, bhp, bat, bdf, weaponName, weaponATK, a, ascensionStatName, ascensionStatNumber, extraStats):
         self.element = element
         self.level = level
 
@@ -147,6 +195,15 @@ class Character:
         self.EM = 0
         self.ER = 100
 
+        self.elementalDMG[0] = 0
+        self.elementalDMG[1] = 0
+        self.elementalDMG[2] = 0
+        self.elementalDMG[3] = 0
+        self.elementalDMG[4] = 0
+        self.elementalDMG[5] = 0
+        self.elementalDMG[6] = 0
+        self.elementalDMG[7] = 0
+
         self.ascendName = ascensionStatName
         self.ascendNum = ascensionStatNumber
 
@@ -244,7 +301,43 @@ class Character:
         elif self.ascendName == "GDMG":
             self.elementalDMG[7] += self.ascendNum
 
-
+        for stats in self.extraStats:
+            if stats[0] == "HP":
+                self.totalHP += stats[1]
+            elif stats[0] == "DEF":
+                self.totalDEF += stats[1]
+            elif stats[0] == "ATK":
+                self.totalATK += stats[1]
+            elif stats[0] == "PHP":
+                self.totalHP += stats[1]
+            elif stats[0] == "PDEF":
+                self.totalDEF += stats[1]
+            elif stats[0] == "PATK":
+                self.totalATK += stats[1]
+            elif stats[0] == "EM":
+                self.EM += stats[1]
+            elif stats[0] == "ER":
+                self.ER += stats[1]
+            elif stats[0] == "CR":
+                self.CR += stats[1]
+            elif stats[0] == "CD":
+                self.CD += stats[1]
+            elif stats[0] == "PHDMG":
+                self.elementalDMG[0] += stats[1]
+            elif stats[0] == "PDMG":
+                self.elementalDMG[1] += stats[1]
+            elif stats[0] == "HDMG":
+                self.elementalDMG[2] += stats[1]
+            elif stats[0] == "ADMG":
+                self.elementalDMG[3] += stats[1]
+            elif stats[0] == "EDMG":
+                self.elementalDMG[4] += stats[1]
+            elif stats[0] == "DDMG":
+                self.elementalDMG[5] += stats[1]
+            elif stats[0] == "CDMG":
+                self.elementalDMG[6] += stats[1]
+            elif stats[0] == "GDMG":
+                self.elementalDMG[7] += stats[1]
 
 
     def getRealValue(self, statName, statValue):
@@ -301,7 +394,7 @@ class Character:
             self.arts[3] = artifact
         elif type == "Circlet":
             self.arts[4] = artifact
-        self.updateStats(self.element, self.level, self.baseHP, self.baseATK - self.weapATK, self.baseDEF, self.weapName, self.weapATK, self.arts, self.ascendName, self.ascendNum)
+        self.updateStats(self.element, self.level, self.baseHP, self.baseATK - self.weapATK, self.baseDEF, self.weapName, self.weapATK, self.arts, self.ascendName, self.ascendNum, self.extraStats)
 
     def getTotalATK(self):
         return self.totalATK
@@ -324,6 +417,25 @@ class Character:
     def getCD(self):
         return self.CD
     
+    def getElementalDMG(self, element):
+        if element == "Physical":
+            return self.elementalDMG[0]
+        elif element == "Pyro":
+            return self.elementalDMG[1]
+        elif element == "Hydro":
+            return self.elementalDMG[2]
+        elif element == "Anemo":
+            return self.elementalDMG[3]
+        elif element == "Electro":
+            return self.elementalDMG[4]
+        elif element == "Dendro":
+            return self.elementalDMG[5]
+        elif element == "Cryo":
+            return self.elementalDMG[6]
+        elif element == "Geo":
+            return self.elementalDMG[7]
+        
+
     def getPHDMG(self):
         return self.elementalDMG[0]
 
