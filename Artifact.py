@@ -22,9 +22,6 @@ class Artifact:
             self.substats[3] = four
             return
 
-    def __init(self, mn):
-        self.main = "goofyah"
-        return
 
     def __str__(self):
         return(f"Main: {self.main}, {self.mainValue}\n{self.substats[0]}, {self.substats[1]}, {self.substats[2]}, {self.substats[3]}")
