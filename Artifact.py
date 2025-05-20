@@ -7,7 +7,7 @@ class Artifact:
             self.type = type
             self.main = mn
             self.mainValue = mstat
-            self.substats = [0,0,0,0]
+            self.substats = [0,0,0,None]
             self.substats[0] = one
             self.substats[1] = two
             self.substats[2] = three
@@ -22,12 +22,29 @@ class Artifact:
             self.substats[3] = four
             return
 
-    def __init(self, mn):
-        self.main = "goofyah"
-        return
-
     def __str__(self):
         return(f"Main: {self.main}, {self.mainValue}\n{self.substats[0]}, {self.substats[1]}, {self.substats[2]}, {self.substats[3]}")
+
+    def getType(self):
+        return self.type
+
+    def getSubstat1(self):
+        return self.substats[0]
+    
+    def getSubstat2(self):
+        return self.substats[1]
+
+    def getSubstat3(self):
+        return self.substats[2]
+
+    def getSubstat4(self):
+        return self.substats[3]
+
+    def setSubstat4(self, substat):
+        self.substats[3] = substat
+
+    def setSubstat1Value(self, value):
+        self.substats[0].setValue(value)
 
     def getMain(self):
         return self.main
