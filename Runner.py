@@ -4,6 +4,7 @@ from Artifact import Artifact
 from Calculator import Calculator
 from RandomArtifact import RandomArtifact
 from BetterArtifacts import BetterArtifacts
+from NewArtifactProbability import NewArtifactProbability
 
 
 # a1 = Artifact("Flower", "HP",4780, Substat("CR", 10.1), Substat("CD", 21.8), Substat("EM", 40), Substat("PHP",0.058))
@@ -20,14 +21,14 @@ from BetterArtifacts import BetterArtifacts
 
 # COURTNEY WANDERER ARTIFACTS
 
-a1 = Artifact("Flower", "HP", 4780, Substat("ATK", 16), Substat("CR", 14.8), Substat("ER", 5.2), Substat("CD", 17.1))
+a1 = Artifact("Flower", "HP", 4780, Substat("ATK", 16), Substat("CR", 14.8), Substat("ER", 10.5 ), Substat("CD", 17.1))
 a2 = Artifact("Feather", "ATK", 311, Substat("CD", 32.6), Substat("CR", 2.7), Substat("HP", 239),  Substat("PATK", 0.041))
 a3 = Artifact("Sands", "PATK", 0.466,  Substat("CR", 3.1),  Substat("CD", 36.5),  Substat("ER", 5.2),  Substat("ATK", 16))
 a4 = Artifact("Goblet", "ADMG", 0.466,  Substat("CR", 7.4),  Substat("CD", 23.3),  Substat("ER", 10.4),  Substat("PATK", 0.117))
 a5 = Artifact("Circlet", "CD", 62.2,  Substat("EM", 63),  Substat("ATK", 14),  Substat("CR", 13.2),  Substat("PDEF", 0.066))
 
 list = [a1,a2,a3,a4,a5]
-
+    
 # extraStats = [["ATK", 1377.686], ["CR", 66.1]]
 extraStats = []
 
@@ -52,7 +53,10 @@ wanderer = Character("Anemo", 90, 10164.11, 327.67, 607.16, "The Widsith", 510, 
 # damage.setCritDMG("Average", ganyu.getCR(), ganyu.getCD())
 # print(damage.calculate())
 
-test = BetterArtifacts(wanderer)
-print("Probability of artifacts worse:", str(test.randomize("Circlet")))
+# test = BetterArtifacts(wanderer)
+# print("Probability of artifacts worse:", str(test.randomize("Circlet")))
 
 # Ganyu ATK with bennett burst (and noblessed): 2768
+testArtifact = Artifact("Flower", "HP", 4780, Substat("PATK", 0.041), Substat("CR", 3.9), Substat("ER", 4.5), Substat("CD", 7.8))
+test2 = NewArtifactProbability(testArtifact, wanderer, 0)
+print(test2.Probability())

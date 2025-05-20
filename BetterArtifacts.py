@@ -19,9 +19,9 @@ class BetterArtifacts:
 
         damage = Calculator()
         damage.setBase(self.character.getTotalATK() * 1.50, 1, 0)
-        damage.setBonus(0, self.character.getElement(), "Anemo", self.character.getElementalDMG("Anemo"))
+        damage.setBonus(0, self.character.getElement(), "Cryo", self.character.getElementalDMG("Cryo"))
         damage.setTarget(103, 90, 0.1, 0)
-        damage.setAmp(self.character.getEM(), "None", 0)
+        damage.setAmp(self.character.getEM(), "Reverse Melt", 0)
         damage.setCritDMG("Average", self.character.getCR(), self.character.getCD())
         oldDamage = damage.calculate()
 
@@ -45,9 +45,9 @@ class BetterArtifacts:
 
 
             damage.setBase(self.character.getTotalATK() * 1.50, 1, 0)
-            damage.setBonus(0, self.character.getElement(), "Anemo", self.character.getElementalDMG("Anemo"))
+            damage.setBonus(0, self.character.getElement(), "Cryo", self.character.getElementalDMG("Cryo"))
             damage.setTarget(103, 90, 0.1, 0)
-            damage.setAmp(self.character.getEM(), "None", 0)
+            damage.setAmp(self.character.getEM(), "Reverse Melt", 0)
             damage.setCritDMG("Average", self.character.getCR(), self.character.getCD())
             newDamage = damage.calculate()
 

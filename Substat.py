@@ -8,6 +8,9 @@ class Substat:
     
     def getValue(self):
         return self.value
-    
+
     def __str__(self):
         return f"{self.stat}: {self.value}"
+    
+    def setValue(self, value):
+        self.value = value
